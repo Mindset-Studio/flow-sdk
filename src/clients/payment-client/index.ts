@@ -1,4 +1,4 @@
-import BaseClient from '../../base'
+import BaseClient from '../base-client/base'
 import { type ExtendedPaymentOrderStatus, type NewPaymentOrderResponse, type PaymentOrderProps, type PaymentOrderStatus, type RawNewPaymentOrderResponse, paymentOrderPropsSchema } from './types'
 
 export default class FlowPaymentClient extends BaseClient {
