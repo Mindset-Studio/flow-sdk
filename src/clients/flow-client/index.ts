@@ -1,4 +1,4 @@
-import { type Environments } from '../../base'
+import { type Environments } from '../base-client/base'
 import FlowPaymentClient from '../payment-client'
 
 export class Flow {
