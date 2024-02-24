@@ -37,7 +37,7 @@ export default abstract class BaseClient {
     }
   }
 
-  signParams (params: Record<string, string | number>): string {
+  protected signParams (params: Record<string, string | number>): string {
     params = { ...params, apiKey: this.apiKey }
     const keys = Object.keys(params).sort()
     const concatenatedParams = keys.reduce((acc, key) => {
@@ -50,7 +50,7 @@ export default abstract class BaseClient {
     return CryptoJS.enc.Hex.stringify(signature)
   }
 
-  parseParams<T>(params: T, schema: z.ZodType<T>): T {
+  protected parseParams<T>(params: T, schema: z.ZodType<T>): T {
     try {
       return schema.parse(params)
     } catch (error) {
@@ -61,7 +61,7 @@ export default abstract class BaseClient {
     }
   }
 
-  generateSearchParams (params: Record<string, string | number | boolean>): URLSearchParams {
+  protected generateSearchParams (params: Record<string, string | number | boolean>): URLSearchParams {
     return new URLSearchParams(params as Record<string, string>)
   }
 }
