@@ -78,13 +78,10 @@ export default class FlowPaymentClient extends BaseClient {
   async generatePaymentOrder (props: PaymentOrderProps): Promise<NewPaymentOrderResponse> {
     const params = this.parseParams(props, paymentOrderPropsSchema)
     const signature = this.signParams(params)
-    const queryString = Object.entries({ ...params, s: signature, apiKey: this.apiKey })
-      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-      .join('&')
 
     const options = {
       method: 'POST',
-      body: new URLSearchParams(queryString).toString()
+      body: this.generateSearchParams({ ...params, s: signature, apiKey: this.apiKey })
     }
     const url = `${this.baseURL}/payment/create`
     const response = await this.request<RawNewPaymentOrderResponse>(url, options)

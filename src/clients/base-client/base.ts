@@ -19,23 +19,25 @@ export default abstract class BaseClient {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    const config = {
+    const config: RequestInit = {
       ...options,
       headers
     }
+
     try {
       const response = await fetch(endpoint, config)
+      const responseData = await response.json()
       if (!response.ok) {
-        throw new Error('HTTP error')
+        throw new Error(responseData?.message as string ?? 'Unknown error')
       }
-      return await response.json()
+      return responseData
     } catch (error) {
-      console.log(error)
+      console.error('Error occurred:\n', error)
       throw new Error('Unexpected error')
     }
   }
 
-  signParams (params: Record<string, string | number>): string {
+  protected signParams (params: Record<string, string | number>): string {
     params = { ...params, apiKey: this.apiKey }
     const keys = Object.keys(params).sort()
     const concatenatedParams = keys.reduce((acc, key) => {
@@ -48,7 +50,7 @@ export default abstract class BaseClient {
     return CryptoJS.enc.Hex.stringify(signature)
   }
 
-  parseParams<T>(params: T, schema: z.ZodType<T>): T {
+  protected parseParams<T>(params: T, schema: z.ZodType<T>): T {
     try {
       return schema.parse(params)
     } catch (error) {
@@ -57,5 +59,9 @@ export default abstract class BaseClient {
       }
       throw new Error('Unexpected error')
     }
+  }
+
+  protected generateSearchParams (params: Record<string, string | number | boolean>): URLSearchParams {
+    return new URLSearchParams(params as Record<string, string>)
   }
 }
