@@ -1,26 +1,26 @@
 import BaseClient from '../base-client/base'
-import { type EditCouponProps, type DiscountCouponProps, type DiscountResponse, type DiscountCouponsListResponse, type DiscountCouponsListProps } from './types'
+import { type EditCouponProps, type DiscountCouponProps, type Discount, type DiscountCouponsListResponse, type DiscountCouponsListProps } from './types'
 
 export default class FlowCouponClient extends BaseClient {
-  async generateDiscountCoupon (props: DiscountCouponProps): Promise<DiscountResponse> {
+  async generateDiscountCoupon (props: DiscountCouponProps): Promise<Discount> {
     const signature = this.signParams(props)
     const body = this.generateSearchParams({ ...props, s: signature })
     return await this.request(`${this.baseURL}/coupon/create`, { method: 'POST', body })
   }
 
-  async editDiscountCoupon (props: EditCouponProps): Promise<DiscountResponse> {
+  async editDiscountCoupon (props: EditCouponProps): Promise<Discount> {
     const signature = this.signParams(props)
     const body = this.generateSearchParams({ ...props, s: signature })
     return await this.request(`${this.baseURL}/coupon/edit`, { method: 'POST', body })
   }
 
-  async deleteDiscountCoupon (couponId: string): Promise<DiscountResponse> {
+  async deleteDiscountCoupon (couponId: string): Promise<Discount> {
     const signature = this.signParams({ couponId })
     const body = this.generateSearchParams({ couponId, s: signature })
     return await this.request(`${this.baseURL}/coupon/delete`, { method: 'POST', body })
   }
 
-  async getDiscountCoupon (couponId: string): Promise<DiscountResponse> {
+  async getDiscountCoupon (couponId: string): Promise<Discount> {
     const signature = this.signParams({ couponId })
     const params = this.generateSearchParams({ couponId, s: signature, apiKey: this.apiKey }).toString()
     return await this.request(`${this.baseURL}/coupon/get?${params}`)
