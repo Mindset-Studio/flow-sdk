@@ -1,5 +1,6 @@
 import { type Environments } from '../base-client/base'
 import FlowCouponClient from '../coupon-client'
+import FlowCustomerClient from '../customer-client'
 import FlowInvoiceClient from '../invoice-client'
 import FlowMerchantClient from '../merchant-client'
 import FlowPaymentClient from '../payment-client'
@@ -15,6 +16,7 @@ export class Flow {
   coupons: FlowCouponClient
   invoices: FlowInvoiceClient
   settlement: FlowSettlementClient
+  customers: FlowCustomerClient
 
   constructor (apiKey: string, env: Environments, secret: string) {
     this.payments = new FlowPaymentClient(apiKey, env, secret)
@@ -24,5 +26,6 @@ export class Flow {
     this.coupons = new FlowCouponClient(apiKey, env, secret)
     this.invoices = new FlowInvoiceClient(apiKey, env, secret)
     this.settlement = new FlowSettlementClient(apiKey, env, secret)
+    this.customers = new FlowCustomerClient(apiKey, env, secret)
   }
 }
