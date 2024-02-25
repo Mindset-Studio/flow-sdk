@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "build": "tsup"
   },
   "author": "José Tomás Silva",
