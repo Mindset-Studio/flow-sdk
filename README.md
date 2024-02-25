@@ -16,7 +16,7 @@ Install flow-sdk in your project
 import { Flow } from "flow-sdk";
 
 const APIKEY = process.env.FLOW_API_KEY;
-const ENV = process.env;
+const ENV = process.env.NODE_ENV;
 const SECRET = process.env.FLOW_SECRET;
 
 const flowClient = new Flow(APIKEY, ENV, SECRET);
