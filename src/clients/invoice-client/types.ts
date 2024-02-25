@@ -103,4 +103,3 @@ export const overdueInvoicesPropsSchema = z.object({
 })
 
 export type OverdueInvoicesProps = z.infer<typeof overdueInvoicesPropsSchema>
-
