@@ -1,3 +1,4 @@
+import { ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
 import { type OutsidePaymentProps, type Invoice, type OverdueInvoicesProps } from './types'
 
@@ -8,7 +9,7 @@ export default class FlowInvoiceClient extends BaseClient {
     return await this.request(`${this.baseURL}/invoice/get?${params}`)
   }
 
-  async getOverDueInvoices (props: OverdueInvoicesProps): Promise<OverdueInvoicesProps> {
+  async getOverDueInvoices (props: OverdueInvoicesProps): Promise<ListResponse<Invoice>> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const params = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey }).toString()
     return await this.request(`${this.baseURL}/invoice/overDue?${params}`)
