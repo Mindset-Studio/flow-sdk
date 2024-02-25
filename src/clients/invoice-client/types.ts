@@ -104,8 +104,3 @@ export const overdueInvoicesPropsSchema = z.object({
 
 export type OverdueInvoicesProps = z.infer<typeof overdueInvoicesPropsSchema>
 
-export interface OverdueInvoicesResponse {
-  total: number
-  hasMore: boolean
-  invoices: Invoice[]
-}
