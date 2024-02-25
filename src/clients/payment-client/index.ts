@@ -9,7 +9,7 @@ export default class FlowPaymentClient extends BaseClient {
  * @throws {Error} If the request fails or if the response does not contain valid payment order status data.
  */
   async getPaymentOrderStatus (transactionToken: string): Promise<Payment> {
-    const url = `${this.baseURL}/payment/getStatus?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken })}`
+    const url = `${this.baseURL}/payment/getStatus?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken, apiKey: this.apiKey })}`
     return await this.request<Payment>(url)
   }
 
@@ -20,7 +20,7 @@ export default class FlowPaymentClient extends BaseClient {
  * @throws {Error} If the request fails or if the response does not contain valid extended payment order status data.
  */
   async getExtendedPaymentOrderStatus (transactionToken: string): Promise<ExtendedPaymentOrderStatus> {
-    const url = `${this.baseURL}/payment/getStatusExtended?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken })}`
+    const url = `${this.baseURL}/payment/getStatusExtended?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken, apiKey: this.apiKey })}`
     return await this.request<ExtendedPaymentOrderStatus>(url)
   }
 
@@ -31,7 +31,7 @@ export default class FlowPaymentClient extends BaseClient {
  * @throws {Error} If the request fails or if the response does not contain valid extended payment order status data.
  */
   async getPaymentOrderStatusByFlowOrder (transactionToken: string): Promise<ExtendedPaymentOrderStatus> {
-    const url = `${this.baseURL}/payment/getStatusByFlowOrder?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken })}`
+    const url = `${this.baseURL}/payment/getStatusByFlowOrder?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken, apiKey: this.apiKey })}`
     return await this.request<ExtendedPaymentOrderStatus>(url)
   }
 
@@ -42,7 +42,7 @@ export default class FlowPaymentClient extends BaseClient {
  * @throws {Error} If the request fails or if the response does not contain valid extended payment order status data.
  */
   async getExtendedPaymentOrderStatusByFlowOrder (flowOrder: string): Promise<ExtendedPaymentOrderStatus> {
-    const url = `${this.baseURL}/payment/getStatusExtendedByFlowOrder?apiKey=${this.apiKey}&flowOrder=${flowOrder}&s=${this.signParams({ flowOrder })}`
+    const url = `${this.baseURL}/payment/getStatusExtendedByFlowOrder?apiKey=${this.apiKey}&flowOrder=${flowOrder}&s=${this.signParams({ flowOrder, apiKey: this.apiKey })}`
     return await this.request<ExtendedPaymentOrderStatus>(url)
   }
 
@@ -53,7 +53,7 @@ export default class FlowPaymentClient extends BaseClient {
  * @throws {Error} If the request fails or if the response does not contain valid payment order status data.
  */
   async getPaymentOrderStatusByCommerceId (commerceId: string): Promise<Payment> {
-    const url = `${this.baseURL}/payment/getStatusByCommerceId?apiKey=${this.apiKey}&commerceId=${commerceId}&s=${this.signParams({ commerceId })}`
+    const url = `${this.baseURL}/payment/getStatusByCommerceId?apiKey=${this.apiKey}&commerceId=${commerceId}&s=${this.signParams({ commerceId, apiKey: this.apiKey })}`
     return await this.request<Payment>(url)
   }
 
@@ -77,7 +77,7 @@ export default class FlowPaymentClient extends BaseClient {
  */
   async generatePaymentOrder (props: PaymentOrderProps): Promise<NewPaymentOrderResponse> {
     const params = this.parseParams(props, paymentOrderPropsSchema)
-    const signature = this.signParams(params)
+    const signature = this.signParams({ ...params, apiKey: this.apiKey })
 
     const options = {
       method: 'POST',
