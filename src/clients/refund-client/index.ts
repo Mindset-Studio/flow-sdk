@@ -12,7 +12,7 @@ export default class FlowRefundClient extends BaseClient {
     const url = `${this.baseURL}/refund/create`
     const signature = this.signParams(params)
     const body = this.generateSearchParams({ ...params, s: signature })
-    return await this.request<RefundResponse>(url, { method: 'POST', body })
+    return await this.request(url, { method: 'POST', body })
   }
 
   /**
