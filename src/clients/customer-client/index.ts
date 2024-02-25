@@ -64,11 +64,11 @@ export default class FlowCustomerClient extends BaseClient {
     return await this.request(`${this.baseURL}/customer/collect`, { method: 'POST', body })
   }
 
-  //   async batchChargeCustomers (props: BatchChargeCustomersProps): Promise<BatchResponse> {
-  //     const signature = this.signParams({ ...props, apiKey: this.apiKey })
-  //     const body = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey })
-  //     return await this.request(`${this.baseURL}/customer/batchCollect`, { method: 'POST', body })
-  //   }
+  async batchChargeCustomers (props: BatchChargeCustomersProps): Promise<BatchResponse> {
+    const signature = this.signParams({ ...props, apiKey: this.apiKey, batchRows: JSON.stringify(props.batchRows) })
+    const body = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey, batchRows: JSON.stringify(props.batchRows) })
+    return await this.request(`${this.baseURL}/customer/batchCollect`, { method: 'POST', body })
+  }
 
   async getBatchChargeStatus (token: string): Promise<BatchStatus> {
     const signature = this.signParams({ token, apiKey: this.apiKey })
