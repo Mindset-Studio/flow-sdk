@@ -9,7 +9,7 @@ export default class FlowPlansClient extends BaseClient {
  */
   async generateSubscriptionPlan (props: SubscriptionProps): Promise<SubscriptionResponse> {
     const url = `${this.baseURL}/subscription/create`
-    const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams(props) })
+    const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams({ ...props, apiKey: this.apiKey }) })
     return await this.request<SubscriptionResponse>(url, { method: 'POST', body })
   }
 
@@ -19,7 +19,7 @@ export default class FlowPlansClient extends BaseClient {
  * @returns {Promise<SubscriptionResponse>} The response containing the plan details.
  */
   async getPlanDetails (planId: string): Promise<SubscriptionResponse> {
-    const url = `${this.baseURL}/plans/get?apiKey=${this.apiKey}&planId=${planId}&s=${this.signParams({ planId })}`
+    const url = `${this.baseURL}/plans/get?apiKey=${this.apiKey}&planId=${planId}&s=${this.signParams({ planId, apiKey: this.apiKey })}`
     return await this.request<SubscriptionResponse>(url)
   }
 
@@ -30,7 +30,7 @@ export default class FlowPlansClient extends BaseClient {
  */
   async editPlanDetails (props: SubscriptionProps): Promise<SubscriptionResponse> {
     const url = `${this.baseURL}/plans/edit`
-    const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams(props) })
+    const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams({ ...props, apiKey: this.apiKey }) })
     return await this.request<SubscriptionResponse>(url, { method: 'POST', body })
   }
 
@@ -41,7 +41,7 @@ export default class FlowPlansClient extends BaseClient {
  */
   async deletePlan (planId: string): Promise<SubscriptionResponse> {
     const url = `${this.baseURL}/plans/delete`
-    const body = this.generateSearchParams({ apiKey: this.apiKey, planId, s: this.signParams({ planId }) })
+    const body = this.generateSearchParams({ apiKey: this.apiKey, planId, s: this.signParams({ planId, apiKey: this.apiKey }) })
     return await this.request<SubscriptionResponse>(url, { method: 'POST', body })
   }
 
@@ -51,7 +51,7 @@ export default class FlowPlansClient extends BaseClient {
  * @returns {Promise<SubscriptionsOfPlanResponse>} The response containing the list of plans.
  */
   async listPlans (props: ListPlansProps & Record<string, string | number>): Promise<SubscriptionsOfPlanResponse> {
-    const params = this.generateSearchParams(props).toString()
+    const params = this.generateSearchParams({ ...props, apiKey: this.apiKey }).toString()
     const url = `${this.baseURL}/plans/list?${params}&s=${this.signParams(props)}`
     return await this.request<SubscriptionsOfPlanResponse>(url)
   }
