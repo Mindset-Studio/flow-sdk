@@ -20,7 +20,7 @@ export type PaymentOrderProps = z.infer<typeof paymentOrderPropsSchema>
 export interface PaymentsListsResponse {
   total: number
   hasMore: boolean
-  data: PaymentOrderStatus[]
+  data: Payment[]
 }
 
 export interface NewPaymentOrderResponse {
@@ -33,7 +33,7 @@ export interface RawNewPaymentOrderResponse {
   flowOrder: number
 }
 
-export interface PaymentOrderStatus {
+export interface Payment {
   flowOrder: number
   commerceOrder: string
   requestDate: string
@@ -78,6 +78,6 @@ export interface ExtendedPaymentData extends PaymentData {
   autorizationCode: string | null
 }
 
-export interface ExtendedPaymentOrderStatus extends PaymentOrderStatus {
+export interface ExtendedPaymentOrderStatus extends Payment {
   paymentData: ExtendedPaymentData
 }

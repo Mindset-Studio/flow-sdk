@@ -1,5 +1,5 @@
 import BaseClient from '../base-client/base'
-import { type ExtendedPaymentOrderStatus, type NewPaymentOrderResponse, type PaymentOrderProps, type PaymentOrderStatus, type RawNewPaymentOrderResponse, paymentOrderPropsSchema } from './types'
+import { type ExtendedPaymentOrderStatus, type NewPaymentOrderResponse, type PaymentOrderProps, type Payment, type RawNewPaymentOrderResponse, paymentOrderPropsSchema } from './types'
 
 export default class FlowPaymentClient extends BaseClient {
   /**
@@ -8,9 +8,9 @@ export default class FlowPaymentClient extends BaseClient {
  * @returns {Promise<PaymentOrderStatus>} A Promise that resolves to the status of the payment order.
  * @throws {Error} If the request fails or if the response does not contain valid payment order status data.
  */
-  async getPaymentOrderStatus (transactionToken: string): Promise<PaymentOrderStatus> {
+  async getPaymentOrderStatus (transactionToken: string): Promise<Payment> {
     const url = `${this.baseURL}/payment/getStatus?apiKey=${this.apiKey}&token=${String(transactionToken)}&s=${this.signParams({ token: transactionToken })}`
-    return await this.request<PaymentOrderStatus>(url)
+    return await this.request<Payment>(url)
   }
 
   /**
@@ -52,13 +52,13 @@ export default class FlowPaymentClient extends BaseClient {
  * @returns {Promise<PaymentOrderStatus>} A Promise that resolves to the status of the payment order.
  * @throws {Error} If the request fails or if the response does not contain valid payment order status data.
  */
-  async getPaymentOrderStatusByCommerceId (commerceId: string): Promise<PaymentOrderStatus> {
+  async getPaymentOrderStatusByCommerceId (commerceId: string): Promise<Payment> {
     const url = `${this.baseURL}/payment/getStatusByCommerceId?apiKey=${this.apiKey}&commerceId=${commerceId}&s=${this.signParams({ commerceId })}`
-    return await this.request<PaymentOrderStatus>(url)
+    return await this.request<Payment>(url)
   }
 
   /**
- * Generates a new payment order based on the provided properties.
+ * Generates a new payment order based on the provided properties.S
  * @param {PaymentOrderProps} props - An object containing the properties of the payment order to be generated.
  * @param {string} props.commerceOrder - The identifier or order number associated with the commerce transaction.
  * @param {string} props.subject - A description of the subject or purpose of the payment order.

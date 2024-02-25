@@ -21,17 +21,7 @@ export interface Settlement {
   billed: number
 }
 
-export interface SettlementDetail {
-  id: number
-  date: string
-  taxId: string
-  name: string
-  email: string
-  currency: string
-  initial_balance: number
-  final_balance: number
-  transferred: number
-  billed: number
+export interface SettlementDetail extends Settlement {
   summary: Summary
   detail: Detail
 }
