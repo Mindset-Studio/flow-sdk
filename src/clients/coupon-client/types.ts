@@ -12,7 +12,7 @@ export const discountCouponPropsSchema = z.object({
 })
 export type DiscountCouponProps = z.infer<typeof discountCouponPropsSchema>
 
-export interface DiscountResponse {
+export interface Discount {
   id: number
   name: number
   percent_off: number
@@ -35,7 +35,7 @@ export interface EditCouponProps {
 export interface DiscountCouponsListResponse {
   total: number
   hasMore: boolean
-  data: DiscountResponse[]
+  data: Discount[]
 }
 
 const discountCouponsListPropsSchema = z.object({
