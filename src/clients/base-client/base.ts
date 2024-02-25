@@ -37,7 +37,7 @@ export default abstract class BaseClient {
     }
   }
 
-  protected signParams (params: Record<string, string | number>): string {
+  protected signParams (params: Record<string | number, string | number>): string {
     params = { ...params, apiKey: this.apiKey }
     const keys = Object.keys(params).sort()
     const concatenatedParams = keys.reduce((acc, key) => {
