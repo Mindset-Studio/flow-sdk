@@ -1,4 +1,4 @@
-import { ListResponse } from '../../types'
+import { type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
 import { type OutsidePaymentProps, type Invoice, type OverdueInvoicesProps } from './types'
 
