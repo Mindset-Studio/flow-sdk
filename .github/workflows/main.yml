@@ -17,6 +17,6 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm run buildenv
+          publish: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
