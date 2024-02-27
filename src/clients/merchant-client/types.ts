@@ -8,7 +8,7 @@ export const associatedCommercePropsSchema = z.object({
 
 export type AssociatedCommerceProps = z.infer<typeof associatedCommercePropsSchema>
 
-export interface AssociatedCommerceResponse {
+export interface AssociatedCommerce {
   id: string
   name: string
   url: string
@@ -30,8 +30,3 @@ export const associatedCommerceListPropsSchema = z.object({
 
 })
 export type AssociatedCommercesListProps = z.infer<typeof associatedCommerceListPropsSchema>
-export interface AssociatedCommercesListResponse {
-  total: number
-  hasMore: boolean
-  data: AssociatedCommerceResponse[]
-}

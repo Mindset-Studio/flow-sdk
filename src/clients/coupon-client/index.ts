@@ -1,5 +1,6 @@
+import { type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
-import { type EditCouponProps, type DiscountCouponProps, type Discount, type DiscountCouponsListResponse, type DiscountCouponsListProps } from './types'
+import { type EditCouponProps, type DiscountCouponProps, type Discount, type DiscountCouponsListProps } from './types'
 
 export default class FlowCouponClient extends BaseClient {
   async generateDiscountCoupon (props: DiscountCouponProps): Promise<Discount> {
@@ -26,7 +27,7 @@ export default class FlowCouponClient extends BaseClient {
     return await this.request(`${this.baseURL}/coupon/get?${params}`)
   }
 
-  async getListOfDiscountCoupons (props: DiscountCouponsListProps): Promise<DiscountCouponsListResponse> {
+  async getListOfDiscountCoupons (props: DiscountCouponsListProps): Promise<ListResponse<Discount>> {
     const signature = this.signParams(props)
     const params = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey }).toString()
     return await this.request(`${this.baseURL}/coupon/list?${params}`)

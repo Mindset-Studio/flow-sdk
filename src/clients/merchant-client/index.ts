@@ -1,14 +1,15 @@
+import { type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
-import { type AssociatedCommerceResponse, type AssociatedCommerceProps, type DeleteCommerceResponse, type AssociatedCommercesListProps, type AssociatedCommercesListResponse } from './types'
+import { type AssociatedCommerce, type AssociatedCommerceProps, type DeleteCommerceResponse, type AssociatedCommercesListProps } from './types'
 
 export default class FlowMerchantClient extends BaseClient {
-  async generateAssociatedCommerce (props: AssociatedCommerceProps): Promise<AssociatedCommerceResponse> {
+  async generateAssociatedCommerce (props: AssociatedCommerceProps): Promise<AssociatedCommerce> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const body = this.generateSearchParams({ ...props, s: signature })
     return await this.request(`${this.baseURL}/merchant/create`, { method: 'POST', body })
   }
 
-  async editAssociatedCommerce (props: AssociatedCommerceProps): Promise<AssociatedCommerceResponse> {
+  async editAssociatedCommerce (props: AssociatedCommerceProps): Promise<AssociatedCommerce> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const body = this.generateSearchParams({ ...props, s: signature })
     return await this.request(`${this.baseURL}/merchant/edit`, { method: 'POST', body })
@@ -26,7 +27,7 @@ export default class FlowMerchantClient extends BaseClient {
     return await this.request(`${this.baseURL}/merchant/get?${params}`)
   }
 
-  async getListOfAssociatedCommerces (props: AssociatedCommercesListProps): Promise<AssociatedCommercesListResponse> {
+  async getListOfAssociatedCommerces (props: AssociatedCommercesListProps): Promise<ListResponse<AssociatedCommerce>> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const params = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: signature }).toString()
     return await this.request(`${this.baseURL}/merchant/list?${params}`)
