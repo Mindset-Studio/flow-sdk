@@ -32,12 +32,6 @@ export interface EditCouponProps {
   [key: string ]: string
 }
 
-export interface DiscountCouponsListResponse {
-  total: number
-  hasMore: boolean
-  data: Discount[]
-}
-
 const discountCouponsListPropsSchema = z.object({
   start: z.number().optional(),
   limit: z.number().optional(),
