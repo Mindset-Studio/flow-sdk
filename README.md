@@ -2,8 +2,6 @@
 
 Unofficial [but wonderful] heavily typed NodeJS Flow SDK to ease your integrations with Flow payment gateway.
 
-![Flow sdk example](https://ray.so/66IwyG9)
-
 ## Installation
 
 Install flow-sdk in your project
