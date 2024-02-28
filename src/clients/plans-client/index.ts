@@ -1,7 +1,7 @@
 import BaseClient from '../base-client/base'
 import { type SubscriptionResponse, type SubscriptionProps, type SubscriptionsOfPlanResponse, type ListPlansProps } from './types'
 
-export default class FlowPlansClient extends BaseClient {
+export  class FlowPlansClient extends BaseClient {
   /**
  * Generates a subscription plan.
  * @param {SubscriptionProps} props - The properties for creating the subscription.

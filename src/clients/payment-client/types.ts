@@ -42,13 +42,13 @@ export interface Payment {
   currency: string
   amount: number
   payer: string
-  optional: Optional
+  optional: Optional2
   pending_info: PendingInfo
   paymentData: PaymentData
   merchantId: string
 }
 
-export interface Optional {
+export interface Optional2 {
   RUT: string
   ID: string
 }

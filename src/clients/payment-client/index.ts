@@ -1,7 +1,7 @@
 import BaseClient from '../base-client/base'
 import { type ExtendedPaymentOrderStatus, type NewPaymentOrderResponse, type PaymentOrderProps, type Payment, type RawNewPaymentOrderResponse, paymentOrderPropsSchema } from './types'
 
-export default class FlowPaymentClient extends BaseClient {
+export  class FlowPaymentClient extends BaseClient {
   /**
  * Retrieves the status of a payment order.
  * @param {string} transactionToken - The token associated with the transaction.

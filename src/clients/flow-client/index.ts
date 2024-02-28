@@ -1,15 +1,15 @@
 import { type Environments } from '../base-client/base'
-import FlowCouponClient from '../coupon-client'
-import FlowCustomerClient from '../customer-client'
-import FlowInvoiceClient from '../invoice-client'
-import FlowMerchantClient from '../merchant-client'
-import FlowPaymentClient from '../payment-client'
-import FlowPlansClient from '../plans-client'
-import FlowRefundClient from '../refund-client'
-import FlowSettlementClient from '../settlement-client'
-import FlowSubscriptionClient from '../subscription-client'
+import {FlowCouponClient} from '../coupon-client'
+import {FlowCustomerClient} from '../customer-client'
+import {FlowInvoiceClient} from '../invoice-client'
+import {FlowMerchantClient} from '../merchant-client'
+import {FlowPaymentClient} from '../payment-client'
+import {FlowPlansClient} from '../plans-client'
+import {FlowRefundClient} from '../refund-client'
+import {FlowSettlementClient} from '../settlement-client'
+import {FlowSubscriptionClient} from '../subscription-client'
 
-export class Flow {
+export  class Flow {
   payments: FlowPaymentClient
   refunds: FlowRefundClient
   plans: FlowPlansClient

@@ -2,7 +2,7 @@ import { type ListResponse, type Filter } from '../../types'
 import BaseClient from '../base-client/base'
 import { type Subscription, type SubscriptionProps } from './types'
 
-export default class FlowSubscriptionClient extends BaseClient {
+export  class FlowSubscriptionClient extends BaseClient {
   async generateSubscription (props: SubscriptionProps): Promise<Subscription> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const body = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey })

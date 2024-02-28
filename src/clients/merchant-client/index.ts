@@ -2,7 +2,7 @@ import { type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
 import { type AssociatedCommerce, type AssociatedCommerceProps, type DeleteCommerceResponse, type AssociatedCommercesListProps } from './types'
 
-export default class FlowMerchantClient extends BaseClient {
+export  class FlowMerchantClient extends BaseClient {
   async generateAssociatedCommerce (props: AssociatedCommerceProps): Promise<AssociatedCommerce> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const body = this.generateSearchParams({ ...props, s: signature })
