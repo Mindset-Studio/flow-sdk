@@ -2,7 +2,7 @@ import { type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
 import { type EditCouponProps, type DiscountCouponProps, type Discount, type DiscountCouponsListProps } from './types'
 
-export  class FlowCouponClient extends BaseClient {
+export class FlowCouponClient extends BaseClient {
   async generateDiscountCoupon (props: DiscountCouponProps): Promise<Discount> {
     const signature = this.signParams(props)
     const body = this.generateSearchParams({ ...props, s: signature })

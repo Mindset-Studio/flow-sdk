@@ -1,7 +1,7 @@
 import BaseClient from '../base-client/base'
 import { type RefundResponse, type RefundProps, refundPropsSchema } from './types'
 
-export  class FlowRefundClient extends BaseClient {
+export class FlowRefundClient extends BaseClient {
   /**
    * Generates a refund for a payment based on the provided properties.
    * @param {RefundProps} props - The properties of the refund to be generated.
