@@ -1,6 +1,6 @@
 {
   "name": "flow-sdk",
-  "version": "0.0.7",
+  "version": "0.1.4",
   "description": "unofficial flow sdk",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest",
     "lint": "tsc",
-    "build": "tsup --format cjs,esm --dts"
+    "build": "tsup"
   },
   "author": "José Tomás Silva",
   "license": "ISC",
