@@ -1,4 +1,5 @@
 import * as z from 'zod'
+import { type PendingInfo } from '../..'
 
 export const paymentOrderPropsSchema = z.object({
   commerceOrder: z.string(),
@@ -42,20 +43,15 @@ export interface Payment {
   currency: string
   amount: number
   payer: string
-  optional: Optional
+  optional: Optional2
   pending_info: PendingInfo
   paymentData: PaymentData
   merchantId: string
 }
 
-export interface Optional {
+export interface Optional2 {
   RUT: string
   ID: string
-}
-
-export interface PendingInfo {
-  media: string
-  date: string
 }
 
 export interface PaymentData {

@@ -1,8 +1,8 @@
 import BaseClient from '../base-client/base'
-import { type Settlement, type GetSettlementsProps, type SettlementDetail } from './types'
+import { type SettlementPayment, type GetSettlementsProps, type SettlementDetail } from './types'
 
-export default class FlowSettlementClient extends BaseClient {
-  async getSettlements (props: GetSettlementsProps): Promise<Settlement[]> {
+export class FlowSettlementClient extends BaseClient {
+  async getSettlements (props: GetSettlementsProps): Promise<SettlementPayment[]> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const query = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: signature }).toString()
     const url = `${this.baseURL}/settlement/search?${query}`

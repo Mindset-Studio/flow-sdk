@@ -1,14 +1,18 @@
 {
   "name": "flow-sdk",
-  "version": "0.0.1",
+  "version": "0.3.1",
   "description": "unofficial flow sdk",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mindset-Studio/flow-sdk"
+  },
   "scripts": {
     "test": "jest",
     "lint": "tsc",
-    "build": "tsup --format cjs,esm --dts"
+    "build": "tsup"
   },
   "author": "José Tomás Silva",
   "license": "ISC",

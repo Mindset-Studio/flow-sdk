@@ -1,6 +1,6 @@
-import { Flow } from '../src/clients/flow-client'
-import FlowPaymentClient from '../src/clients/payment-client'
-import FlowRefundClient from '../src/clients/refund-client'
+import {Flow} from '../src/clients/flow-client'
+import  { FlowPaymentClient } from '../src/clients/payment-client'
+import {FlowRefundClient} from '../src/clients/refund-client'
 
 describe('Testing flow client', () => {
   test('Should create a new flow client', () => {

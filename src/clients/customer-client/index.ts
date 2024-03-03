@@ -1,9 +1,9 @@
 import { type Filter, type ListResponse } from '../../types'
 import BaseClient from '../base-client/base'
-import { type Payment } from '../invoice-client/types'
+import { type Payment } from '../payment-client/types'
 import { type BatchChargeCustomersProps, type BatchResponse, type BatchStatus, type ChargeCustomerBaseProps, type ChargeCustomerProps, type Customer, type CustomerProps, type EditCustomerProps, type RegisterProps, type RegisterResponse, type RegisterStatus } from './types'
 
-export default class FlowCustomerClient extends BaseClient {
+export class FlowCustomerClient extends BaseClient {
   async generateCustomer (props: CustomerProps): Promise<Customer> {
     const signature = this.signParams({ ...props, apiKey: this.apiKey })
     const body = this.generateSearchParams({ ...props, s: signature, apiKey: this.apiKey })

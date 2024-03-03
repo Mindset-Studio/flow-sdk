@@ -1,13 +1,13 @@
 import BaseClient from '../base-client/base'
-import { type SubscriptionResponse, type SubscriptionProps, type SubscriptionsOfPlanResponse, type ListPlansProps } from './types'
+import { type SubscriptionResponse, type SubscriptionOfPlanProps, type SubscriptionsOfPlanResponse, type ListPlansProps } from './types'
 
-export default class FlowPlansClient extends BaseClient {
+export class FlowPlansClient extends BaseClient {
   /**
  * Generates a subscription plan.
- * @param {SubscriptionProps} props - The properties for creating the subscription.
+ * @param {SubscriptionOfPlanProps} props - The properties for creating the subscription.
  * @returns {Promise<SubscriptionResponse>} The response containing the subscription details.
  */
-  async generateSubscriptionPlan (props: SubscriptionProps): Promise<SubscriptionResponse> {
+  async generateSubscriptionPlan (props: SubscriptionOfPlanProps): Promise<SubscriptionResponse> {
     const url = `${this.baseURL}/subscription/create`
     const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams({ ...props, apiKey: this.apiKey }) })
     return await this.request<SubscriptionResponse>(url, { method: 'POST', body })
@@ -28,7 +28,7 @@ export default class FlowPlansClient extends BaseClient {
  * @param {SubscriptionProps} props - The properties for editing the subscription plan.
  * @returns {Promise<SubscriptionResponse>} The response containing the updated plan details.
  */
-  async editPlanDetails (props: SubscriptionProps): Promise<SubscriptionResponse> {
+  async editPlanDetails (props: SubscriptionOfPlanProps): Promise<SubscriptionResponse> {
     const url = `${this.baseURL}/plans/edit`
     const body = this.generateSearchParams({ ...props, apiKey: this.apiKey, s: this.signParams({ ...props, apiKey: this.apiKey }) })
     return await this.request<SubscriptionResponse>(url, { method: 'POST', body })

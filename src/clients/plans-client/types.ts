@@ -14,7 +14,7 @@ export const subscriptionPropsSchema = z.object({
   charges_retries_number: z.number().optional(),
   currency_convert_option: z.enum(['1', '2']).optional()
 })
-export type SubscriptionProps = z.infer<typeof subscriptionPropsSchema>
+export type ClientSubscriptionProps = z.infer<typeof subscriptionPropsSchema>
 
 export interface SubscriptionResponse {
   planId: string

@@ -29,7 +29,7 @@ export interface SettlementDetail extends Settlement {
 export interface Summary {
   transferred: Transferred[]
   commission: Commission[]
-  payment: Payment[]
+  payment: SettlementPayment[]
   credit: Credit[]
   debit: Debit[]
   billed: Billed[]
@@ -48,7 +48,7 @@ export interface Commission {
   total: number
 }
 
-export interface Payment {
+export interface SettlementPayment {
   paymentMethod: string
   brand: string
   operations: number

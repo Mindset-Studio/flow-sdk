@@ -1,5 +1,6 @@
 import * as CryptoJS from 'crypto-js'
 import * as z from 'zod'
+import { FlowHTTPError } from '../../error/FlowError'
 export type Environments = 'development' | 'production'
 
 export default abstract class BaseClient {
@@ -15,7 +16,7 @@ export default abstract class BaseClient {
     this.secret = secret
   }
 
-  async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  protected async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -28,12 +29,16 @@ export default abstract class BaseClient {
       const response = await fetch(endpoint, config)
       const responseData = await response.json()
       if (!response.ok) {
-        throw new Error(responseData?.message as string ?? 'Unknown error')
+        throw new FlowHTTPError(responseData?.message as string ?? 'Unknown HTTP error', responseData?.code as string ?? 'Unknown', response.url)
       }
       return responseData
     } catch (error) {
-      console.error('Error occurred:\n', error)
-      throw new Error('Unexpected error')
+      if (error instanceof FlowHTTPError) {
+        error.log()
+        throw error
+      } else {
+        throw new Error(`Unexpected error: \n${error as string}`)
+      }
     }
   }
 
